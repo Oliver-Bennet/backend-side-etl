@@ -18,9 +18,9 @@ import requests
 security = HTTPBearer()
 
 # CONFIG COGNITO
-JWKS_URL = "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_LZU2SXqyz/.well-known/jwks.json"
-CLIENT_ID = "6v29eis60gqjicijhirvp22of"
-ISSUER = "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_LZU2SXqyz"
+JWKS_URL = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_a0p3hGomx/.well-known/jwks.json"
+CLIENT_ID = "7liq97f04uk38mun12drgmpavc"
+ISSUER = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_a0p3hGomx"
 
 # Fetch JWKS một lần (cache)
 jwks = requests.get(JWKS_URL).json()
@@ -48,7 +48,7 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
 import boto3
 from datetime import datetime
 
-dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-1')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 JOBS_TABLE = 'JobsTable'
 
 def create_job(job_id: str, user_id: str, filename: str, key: str):
@@ -88,9 +88,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-s3 = boto3.client('s3')
-UPLOAD_BUCKET = 'source-bucket-oabga'  # Set in EC2 env if needed
-DATALAKE_BUCKET = 'data-lake-bucket-processed'
+s3 = boto3.client('s3', region_name='us-east-1')
+UPLOAD_BUCKET = 'source-bucket-oabga-use1'  # Set in EC2 env if needed
+DATALAKE_BUCKET = 'data-lake-bucket-processed-use1'
 
 @app.post("/api/upload")
 async def upload_csv(file: UploadFile = File(...), user=Depends(get_current_user)):
