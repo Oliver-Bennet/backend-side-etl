@@ -6,9 +6,9 @@ import requests
 security = HTTPBearer()
 
 # CONFIG COGNITO
-JWKS_URL = "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_LZU2SXqyz/.well-known/jwks.json"
-CLIENT_ID = "6v29eis60gqjicijhirvp22of"
-ISSUER = "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_LZU2SXqyz"
+JWKS_URL = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_a0p3hGomx/.well-known/jwks.json"
+CLIENT_ID = "7liq97f04uk38mun12drgmpavc"
+ISSUER = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_a0p3hGomx"
 
 # Fetch JWKS một lần (cache)
 jwks = requests.get(JWKS_URL).json()
