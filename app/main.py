@@ -29,8 +29,8 @@ security = HTTPBearer()
 
 
 s3 = boto3.client('s3', region_name='us-east-1')
-UPLOAD_BUCKET = 'raw-bucket'  # Set in EC2 env if needed
-DATALAKE_BUCKET = 'clean-bucket'
+UPLOAD_BUCKET = 'source-bucket-oabga-use1'  # Set in EC2 env if needed
+DATALAKE_BUCKET = 'data-lake-bucket-processed-use1'
 
 @app.get("/health")
 async def health_check():
