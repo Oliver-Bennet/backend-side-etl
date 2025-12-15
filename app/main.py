@@ -28,9 +28,9 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 security = HTTPBearer()
 
 
-s3 = boto3.client('s3')
-UPLOAD_BUCKET = 'source-bucket-oabga'  # Set in EC2 env if needed
-DATALAKE_BUCKET = 'data-lake-bucket-processed'
+s3 = boto3.client('s3', region_name='us-east-1')
+UPLOAD_BUCKET = 'raw-bucket'  # Set in EC2 env if needed
+DATALAKE_BUCKET = 'clean-bucket'
 
 @app.get("/health")
 async def health_check():
